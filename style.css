@@ -15,6 +15,7 @@ body {
   height: 500px;
   width: 580px;
   border: black solid 2px;
+  background-color: black;
 }
 
 /* #footer {
