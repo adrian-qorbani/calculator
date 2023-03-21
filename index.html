@@ -17,21 +17,52 @@
       href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" type="image/x-icon" href="./src/icon.svg" />
+    <link rel="icon" type="image/x-icon" href="/src/favicon.svg">
   </head>
   <body>
     <main id="app">
       <div id="hero">
         <h3>Adrian's Calculator: A JavaScript Web Application</h3>
       </div>
-      <div id="calculator"></div>
+      <div id="calculator">
+        <div id="calc-display">
+          <input type="text" id="calculator-input"></input>
+        </div>
+        <div id="calc-buttons">
+          <button type="button" class="operator" value="+">+</button>
+          <button type="button" class="operator" value="-">-</button>
+          <button type="button" class="operator" value="*">&times;</button>
+          <button type="button" class="operator" value="/">&divide;</button>
+      
+          <button type="button" value="7">7</button>
+          <button type="button" value="8">8</button>
+          <button type="button" value="9">9</button>
+      
+      
+          <button type="button" value="4">4</button>
+          <button type="button" value="5">5</button>
+          <button type="button" value="6">6</button>
+      
+      
+          <button type="button" value="1">1</button>
+          <button type="button" value="2">2</button>
+          <button type="button" value="3">3</button>
+      
+      
+          <button type="button" value="0">0</button>
+          <button type="button" class="decimal" value=".">.</button>
+          <button type="button" class="all-clear" value="all-clear">AC</button>
+      
+          <button type="button" class="equal-sign" value="=">=</button>
+        </div>
+      </div>
       <div id="footer">
         <p>
           Created and designed by
           <a href="">Adrian Ghorbani <i class="fa fa-link"></i> </a> 2023 |
           <a href=""> Source Code <i class="fa fa-github"></i></a>
         </p>
-        <p>Dedicated to the Odin Project</p>
+        <!-- <p>Dedicated to the Odin Project</p> -->
       </div>
     </main>
     <script src="" async defer></script>
