@@ -26,29 +26,29 @@
       </div>
       <div id="calculator">
         <div id="calc-display">
-          <input type="text" id="calculator-input"></input>
+          <input type="text" id="calculator-input" placeholder="0.0"></input>
         </div>
         <div id="calc-buttons">
-          <button type="button" class="operator" value="*">&times;</button>
-          <button type="button" class="operator" value="/">&divide;</button>
-          <button type="button" class="operator" value="+">+</button>
-          <button type="button" class="operator" value="-">-</button>
+          <button type="button" class="operator" value="*" id="times-operator">&times;</button>
+          <button type="button" class="operator" value="/" id="division-operator">&divide;</button>
+          <button type="button" class="operator" value="+" id="add-operator">+</button>
+          <button type="button" class="operator" value="-" id="subtract-operator">-</button>
 
-          <button type="button" value="7">7</button>
-          <button type="button" value="8">8</button>
-          <button type="button" value="9">9</button>
-          <button type="button" value="4">4</button>
-          <button type="button" value="5">5</button>
-          <button type="button" value="6">6</button>
-          <button type="button" value="1">1</button>
-          <button type="button" value="2">2</button>
-          <button type="button" value="3">3</button>
-    
-          <button type="button" class="zero" value="0">0</button>
-          <button type="button" class="decimal-point" value=".">.</button>
-          <button type="button" class="ac" value="all-clear">AC</button>
+          <button type="button" value="7" id="num-7">7</button>
+          <button type="button" value="8" id="num-8">8</button>
+          <button type="button" value="9" id="num-9">9</button>
+          <button type="button" value="4" id="num-4">4</button>
+          <button type="button" value="5" id="num-5">5</button>
+          <button type="button" value="6" id="num-6">6</button>
+          <button type="button" value="1" id="num-1">1</button>
+          <button type="button" value="2" id="num-2">2</button>
+          <button type="button" value="3" id="num-3">3</button>
+          <button type="button" class="zero" value="0"  id="num-zero">0</button>
+
+          <button type="button" class="decimal-point" value="." id="btn-decimal">.</button>
+          <button type="button" class="ac" value="all-clear" id="btn-ac">AC</button>
       
-          <button type="button" class="equal-sign" value="=">=</button>
+          <button type="button" class="equal-sign" value="=" id="btn-equal">=</button>
         </div>
       </div>
       <div id="footer">
@@ -60,6 +60,6 @@
         <!-- <p>Dedicated to the Odin Project</p> -->
       </div>
     </main>
-    <script src="" async defer></script>
+    <script src="./script.js" async defer></script>
   </body>
 </html>
