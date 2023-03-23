@@ -7,8 +7,8 @@ const divide = (x, y) => a / b;
 
 ///// Defined vars for Operation /////
 
-const firstNum = 4; //MUST BE DYNAMIC
-const secondNum = 6; //MUST BE DYNAMIC
+const firstNum = [];
+const secondNum = [];
 const operators = ["add", "subtract", "multiply", "divide"];
 let selectOperator = "add"; //MUST BE DYNAMIC
 
@@ -62,8 +62,20 @@ const btnEqual = document.querySelector("#btn-equal");
 //   console.log("YAAAY!!!ADDING!");
 // });
 
-// Assigning 
-btnAdd.addEventListener("click", () => selectOperator = operators[0]);
-btnSubtract.addEventListener("click", () => selectOperator = operators[1]);
-btnDivide.addEventListener("click", () => selectOperator = operators[2]);
-btnMultiply.addEventListener("click", () => selectOperator = operators[3]);
+// Assigning
+btnAdd.addEventListener("click", () => (selectOperator = operators[0]));
+btnSubtract.addEventListener("click", () => (selectOperator = operators[1]));
+btnDivide.addEventListener("click", () => (selectOperator = operators[2]));
+btnMultiply.addEventListener("click", () => (selectOperator = operators[3]));
+
+btn1.addEventListener("click", () => firstNum.push(1));
+btn2.addEventListener("click", () => {
+  firstNum.push(2);
+  return firstNum.join();
+});
+
+
+// Heres the idea: for each number, a new element joins the array within the display. They are fused togethor and as soon
+// as an operator is called, they are joined and saved into another variable, waiting while the secondNum gets it turn.
+// As soon as the next operator is called, secondNum's elements are also joined therefore the operation's first level is
+// done and awaits the next operation.
