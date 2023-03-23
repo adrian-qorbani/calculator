@@ -68,11 +68,17 @@ btnSubtract.addEventListener("click", () => (selectOperator = operators[1]));
 btnDivide.addEventListener("click", () => (selectOperator = operators[2]));
 btnMultiply.addEventListener("click", () => (selectOperator = operators[3]));
 
-btn1.addEventListener("click", () => firstNum.push(1));
+btn1.addEventListener("click", () => {
+  firstNum.push(1);
+  document.getElementById("calculator-input").value = firstNum.join("");
+});
 btn2.addEventListener("click", () => {
   firstNum.push(2);
-  return firstNum.join();
+  document.getElementById("calculator-input").value = firstNum.join("");
 });
+// must be done for all buttons
+
+
 
 
 // Heres the idea: for each number, a new element joins the array within the display. They are fused togethor and as soon
