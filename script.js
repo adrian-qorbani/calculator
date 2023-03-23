@@ -61,3 +61,9 @@ const btnEqual = document.querySelector("#btn-equal");
 // const adding = btnAdd.addEventListener("click", () => {
 //   console.log("YAAAY!!!ADDING!");
 // });
+
+// Assigning 
+btnAdd.addEventListener("click", () => selectOperator = operators[0]);
+btnSubtract.addEventListener("click", () => selectOperator = operators[1]);
+btnDivide.addEventListener("click", () => selectOperator = operators[2]);
+btnMultiply.addEventListener("click", () => selectOperator = operators[3]);
