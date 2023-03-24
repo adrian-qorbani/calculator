@@ -7,7 +7,7 @@ const divide = (x, y) => a / b;
 
 ///// Defined vars for Operation /////
 
-const firstNum = [];
+let firstNum = [];
 const secondNum = [];
 const operators = ["add", "subtract", "multiply", "divide"];
 let selectOperator = "add"; //MUST BE DYNAMIC
@@ -68,16 +68,20 @@ btnSubtract.addEventListener("click", () => (selectOperator = operators[1]));
 btnDivide.addEventListener("click", () => (selectOperator = operators[2]));
 btnMultiply.addEventListener("click", () => (selectOperator = operators[3]));
 
-btn1.addEventListener("click", () => {
-  firstNum.push(1);
-  document.getElementById("calculator-input").value = firstNum.join("");
-});
-btn2.addEventListener("click", () => {
-  firstNum.push(2);
-  document.getElementById("calculator-input").value = firstNum.join("");
-});
-// must be done for all buttons
+const actionButtons = document.querySelectorAll(".action-btns");
 
+// Operation : Entering Numbers in Display
+actionButtons.forEach((actionBtn) =>
+  actionBtn.addEventListener("click", () => {
+    firstNum.push(actionBtn.value);
+    document.getElementById("calculator-input").value = firstNum.join("");
+  })
+);
+// OPERATION: AC Function
+btnAC.addEventListener("click", () => {
+  firstNum = [];
+  document.getElementById("calculator-input").value = 0;
+})
 
 
 
