@@ -8,25 +8,27 @@ const divide = (x, y) => a / b;
 ///// Defined vars for Operation /////
 
 let firstNum = [];
-const secondNum = [];
+let secondNum = [];
 const operators = ["add", "subtract", "multiply", "divide"];
 let selectOperator = "add"; //MUST BE DYNAMIC
+let displayValue;
 
 ///// Defined Calc Operation /////
 
 const execCalculation = (operator, [first, second]) => {
   switch (operator) {
     case "add":
-      console.log(add(first, second));
+      // Using Number() to turn stringifed charecters to numbers for calculation
+      console.log(add(Number(first), Number(second)));
       break;
     case "subtract":
-      console.log(subtract(first, second));
+      console.log(subtract(Number(first), Number(second)));
       break;
     case "multiply":
-      console.log(multiply(first, second));
+      console.log(multiply(Number(first), Number(second)));
       break;
     case "divide":
-      console.log(divide(first, second));
+      console.log(divide(Number(first), Number(second)));
       break;
     default:
       break;
@@ -40,18 +42,6 @@ const btnSubtract = document.querySelector("#subtract-operator");
 const btnDivide = document.querySelector("#division-operator");
 const btnMultiply = document.querySelector("#times-operator");
 
-// Numbers
-const btn1 = document.querySelector("#num-1");
-const btn2 = document.querySelector("#num-2");
-const btn3 = document.querySelector("#num-3");
-const btn4 = document.querySelector("#num-4");
-const btn5 = document.querySelector("#num-5");
-const btn6 = document.querySelector("#num-6");
-const btn7 = document.querySelector("#num-7");
-const btn8 = document.querySelector("#num-8");
-const btn9 = document.querySelector("#num-9");
-const btn10 = document.querySelector("#num-0");
-
 // Others
 const btnDecimal = document.querySelector("#btn-decimal");
 const btnAC = document.querySelector("#btn-ac");
@@ -63,10 +53,20 @@ const btnEqual = document.querySelector("#btn-equal");
 // });
 
 // Assigning
-btnAdd.addEventListener("click", () => (selectOperator = operators[0]));
-btnSubtract.addEventListener("click", () => (selectOperator = operators[1]));
-btnDivide.addEventListener("click", () => (selectOperator = operators[2]));
-btnMultiply.addEventListener("click", () => (selectOperator = operators[3]));
+btnAdd.addEventListener("click", () => {
+  selectOperator = operators[0];
+  // document.getElementById("calculator-input").value = 0;
+  return execCalculation(selectOperator, [
+    firstNum.join(""),
+    secondNum.join(""),
+  ]);
+
+});
+
+// deactivated temporarily for maintenance 
+// btnSubtract.addEventListener("click", () => (selectOperator = operators[1]));
+// btnDivide.addEventListener("click", () => (selectOperator = operators[2]));
+// btnMultiply.addEventListener("click", () => (selectOperator = operators[3]));
 
 const actionButtons = document.querySelectorAll(".action-btns");
 
@@ -75,15 +75,21 @@ actionButtons.forEach((actionBtn) =>
   actionBtn.addEventListener("click", () => {
     firstNum.push(actionBtn.value);
     document.getElementById("calculator-input").value = firstNum.join("");
+    displayValue = firstNum.join("");
   })
 );
 // OPERATION: AC Function
 btnAC.addEventListener("click", () => {
   firstNum = [];
   document.getElementById("calculator-input").value = 0;
-})
-
-
+});
+// OPERATION: Calculate
+btnEqual.addEventListener("click", () => {
+  return execCalculation(selectOperator, [
+    firstNum.join(""),
+    secondNum.join(""),
+  ]);
+});
 
 // Heres the idea: for each number, a new element joins the array within the display. They are fused togethor and as soon
 // as an operator is called, they are joined and saved into another variable, waiting while the secondNum gets it turn.
