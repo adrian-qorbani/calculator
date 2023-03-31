@@ -12,6 +12,7 @@ let secondNum = [];
 const operators = ["add", "subtract", "multiply", "divide"];
 let selectOperator = "add"; //MUST BE DYNAMIC
 let displayValue;
+let currentValue = [];
 
 ///// DOM Variables /////
 // Operators
@@ -72,6 +73,8 @@ const execCalculation = (operator, [first, second]) => {
 
 // Assigning
 btnAdd.addEventListener("click", () => {
+  firstNum = currentValue;
+  currentValue = [];
   selectOperator = operators[0];
   // document.getElementById("calculator-input").value = 0;
   return execCalculation(selectOperator, [
@@ -90,9 +93,9 @@ const actionButtons = document.querySelectorAll(".action-btns");
 // Operation : Entering Numbers in Display
 actionButtons.forEach((actionBtn) =>
   actionBtn.addEventListener("click", () => {
-    firstNum.push(actionBtn.value);
-    document.getElementById("calculator-input").value = firstNum.join("");
-    displayValue = firstNum.join("");
+    currentValue.push(actionBtn.value);
+    document.getElementById("calculator-input").value = currentValue.join("");
+    displayValue = currentValue.join("");
   })
 );
 // OPERATION: AC Function
