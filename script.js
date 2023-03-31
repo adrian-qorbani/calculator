@@ -73,14 +73,27 @@ const execCalculation = (operator, [first, second]) => {
 
 // Assigning
 btnAdd.addEventListener("click", () => {
-  firstNum = currentValue;
-  currentValue = [];
-  selectOperator = operators[0];
-  // document.getElementById("calculator-input").value = 0;
-  return execCalculation(selectOperator, [
-    firstNum.join(""),
-    secondNum.join(""),
-  ]);
+  // if current value is empty run firstNum else its not empty, run second number then add it to the first.
+  if (firstNum.length == 0) {
+    firstNum = currentValue;
+    currentValue = [];
+    selectOperator = operators[0];
+    execCalculation(selectOperator, [
+      firstNum.join(""),
+      secondNum.join(""),
+    ]);
+
+
+  } else {
+    secondNum = currentValue;
+    currentValue = [];
+    selectOperator = operators[0];
+    execCalculation(selectOperator, [
+      firstNum.join(""),
+      secondNum.join(""),
+    ]);
+    firstNum = [];
+  }
 });
 
 // deactivated temporarily for maintenance
