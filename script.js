@@ -37,6 +37,7 @@ const execCalculation = (operator, [first, second]) => {
         Number(first),
         Number(second)
       );
+      
       break;
     case "subtract":
       console.log(subtract(Number(first), Number(second)));
@@ -71,9 +72,24 @@ const execCalculation = (operator, [first, second]) => {
 //   console.log("YAAAY!!!ADDING!");
 // });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Assigning
-btnAdd.addEventListener("click", () => {
-  // if current value is empty run firstNum else its not empty, run second number then add it to the first.
+btnAdd.addEventListener("click", () => runAdd());
+
+
+let runAdd = () => {
   if (firstNum.length == 0) {
     firstNum = currentValue;
     currentValue = [];
@@ -86,15 +102,28 @@ btnAdd.addEventListener("click", () => {
 
   } else {
     secondNum = currentValue;
-    currentValue = [];
     selectOperator = operators[0];
     execCalculation(selectOperator, [
       firstNum.join(""),
       secondNum.join(""),
     ]);
-    firstNum = [];
+    secondNum = [];
+    firstNum = document.getElementById("calculator-input").value.split('');
+    currentValue = [];
   }
-});
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 // deactivated temporarily for maintenance
 // btnSubtract.addEventListener("click", () => (selectOperator = operators[1]));
