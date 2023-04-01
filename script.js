@@ -19,7 +19,8 @@ const btnAdd = document.querySelector("#add-operator");
 const btnSubtract = document.querySelector("#subtract-operator");
 const btnDivide = document.querySelector("#division-operator");
 const btnMultiply = document.querySelector("#times-operator");
-let calculatorDisplayInput = document.getElementById("calculator-input");
+const actionButtons = document.querySelectorAll(".action-btns");
+let calculatorDisplayInput = document.querySelector("#calculator-input");
 
 // Others
 const btnDecimal = document.querySelector("#btn-decimal");
@@ -31,61 +32,43 @@ const btnEqual = document.querySelector("#btn-equal");
 const execCalculation = (operator, [first, second]) => {
   switch (operator) {
     case "add":
-
       // Using Number() to turn stringifed charecters to numbers for calculation
-      console.log(add(Number(first), Number(second)));
       calculatorDisplayInput.value = add(Number(first), Number(second));
-
       break;
     case "subtract":
-      console.log(subtract(Number(first), Number(second)));
-      document.getElementById("calculator-input").value = subtract(
-        Number(first),
-        Number(second)
-      );
+      calculatorDisplayInput.value = subtract(Number(first), Number(second));
       break;
     case "multiply":
-      console.log(multiply(Number(first), Number(second)));
-      document.getElementById("calculator-input").value = multiply(
-        Number(first),
-        Number(second)
-      );
-
+      calculatorDisplayInput.value = multiply(Number(first), Number(second));
       break;
     case "divide":
-      console.log(divide(Number(first), Number(second)));
-      document.getElementById("calculator-input").value = divide(
-        Number(first),
-        Number(second)
-      );
-
-      break;
-    default:
+      calculatorDisplayInput.value = divide(Number(first), Number(second));
       break;
   }
 };
 
-
-// Operator Assignment
+// Buttons Choosing Operators
 btnAdd.addEventListener("click", () => runOperation(0));
 btnSubtract.addEventListener("click", () => runOperation(1));
+btnMultiply.addEventListener("click", () => runOperation(2));
+btnDivide.addEventListener("click", () => runOperation(3));
 
 
-
-const actionButtons = document.querySelectorAll(".action-btns");
 
 // Operation : Entering Numbers in Display
 actionButtons.forEach((actionBtn) =>
   actionBtn.addEventListener("click", () => {
     currentValue.push(actionBtn.value);
-    document.getElementById("calculator-input").value = currentValue.join("");
+    calculatorDisplayInput.value = currentValue.join("");
   })
 );
+
 // OPERATION: AC Function
 btnAC.addEventListener("click", () => {
   firstNum = [];
-  document.getElementById("calculator-input").value = 0;
+  calculatorDisplayInput.value = 0;
 });
+
 // OPERATION: Calculate
 btnEqual.addEventListener("click", () => {
   return execCalculation(selectOperator, [
@@ -94,8 +77,7 @@ btnEqual.addEventListener("click", () => {
   ]);
 });
 
-
-// OPERATION: General
+// OPERATION: General Calculation
 let runOperation = (op) => {
   selectOperator = operators[op];
   if (firstNum.length == 0) {
