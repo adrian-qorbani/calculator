@@ -70,12 +70,7 @@ btnAC.addEventListener("click", () => {
 });
 
 // OPERATION: Calculate
-btnEqual.addEventListener("click", () => {
-  return execCalculation(selectOperator, [
-    firstNum.join(""),
-    secondNum.join(""),
-  ]);
-});
+btnEqual.addEventListener("click", () => runOperation(0));
 
 // OPERATION: General Calculation
 let runOperation = (op) => {
