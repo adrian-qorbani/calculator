@@ -11,7 +11,8 @@ let firstNum = [];
 let secondNum = [];
 const operators = ["add", "subtract", "multiply", "divide"];
 let currentValue = [];
-let selectOperator;
+// let selectOperator;
+let currentOperator;
 
 ///// DOM Variables /////
 // Operators
@@ -48,12 +49,24 @@ const execCalculation = (operator, [first, second]) => {
 };
 
 // Buttons Choosing Operators
-btnAdd.addEventListener("click", () => runOperation(0));
-btnSubtract.addEventListener("click", () => runOperation(1));
-btnMultiply.addEventListener("click", () => runOperation(2));
-btnDivide.addEventListener("click", () => runOperation(3));
+btnAdd.addEventListener("click", () => {
+  currentOperator = 0;
+  runOperation(0);
+});
 
+btnSubtract.addEventListener("click", () => {
+  currentOperator = 1;
+  runOperation(1);
+});
 
+btnMultiply.addEventListener("click", () => {
+  currentOperator = 2;
+  runOperation(2);
+});
+btnDivide.addEventListener("click", () => {
+  currentOperator = 3;
+  runOperation(3);
+});
 
 // Operation : Entering Numbers in Display
 actionButtons.forEach((actionBtn) =>
@@ -66,15 +79,17 @@ actionButtons.forEach((actionBtn) =>
 // OPERATION: AC Function
 btnAC.addEventListener("click", () => {
   firstNum = [];
+  currentValue = [];
+  secondNum = [];
   calculatorDisplayInput.value = 0;
 });
 
 // OPERATION: Calculate
-btnEqual.addEventListener("click", () => runOperation(0));
+btnEqual.addEventListener("click", () => runOperation(currentOperator));
 
 // OPERATION: General Calculation
 let runOperation = (op) => {
-  selectOperator = operators[op];
+  let selectOperator = operators[op];
   if (firstNum.length == 0) {
     firstNum = currentValue;
     currentValue = [];
