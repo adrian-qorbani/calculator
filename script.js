@@ -7,13 +7,14 @@ const divide = (x, y) => x / y;
 
 ///// Defined vars for Operation /////
 
-let firstNum = [];
-let secondNum = [];
-const operators = ["add", "subtract", "multiply", "divide"];
-let currentValue = [];
-// let selectOperator;
-let currentOperator;
 
+const calculatorObj = {
+  firstNum: [],
+  secondNum: [],
+  operators: ["add", "subtract", "multiply", "divide"],
+  currentValue: [],
+  currentOperator: null,
+};
 ///// DOM Variables /////
 // Operators
 const btnAdd = document.querySelector("#add-operator");
@@ -50,58 +51,71 @@ const execCalculation = (operator, [first, second]) => {
 
 // Buttons Choosing Operators
 btnAdd.addEventListener("click", () => {
-  currentOperator = 0;
+  calculatorObj.currentOperator = 0;
   runOperation(0);
 });
 
 btnSubtract.addEventListener("click", () => {
-  currentOperator = 1;
+  calculatorObj.currentOperator = 1;
   runOperation(1);
 });
 
 btnMultiply.addEventListener("click", () => {
-  currentOperator = 2;
+  calculatorObj.currentOperator = 2;
   runOperation(2);
 });
 btnDivide.addEventListener("click", () => {
-  currentOperator = 3;
+  calculatorObj.currentOperator = 3;
   runOperation(3);
 });
 
 // Operation : Entering Numbers in Display
 actionButtons.forEach((actionBtn) =>
   actionBtn.addEventListener("click", () => {
-    currentValue.push(actionBtn.value);
-    calculatorDisplayInput.value = currentValue.join("");
+    calculatorObj.currentValue.push(actionBtn.value);
+    calculatorDisplayInput.value = calculatorObj.currentValue.join("");
   })
 );
 
 // OPERATION: AC Function
 btnAC.addEventListener("click", () => {
-  firstNum = [];
-  currentValue = [];
-  secondNum = [];
+  calculatorObj.firstNum = [];
+  calculatorObj.currentValue = [];
+  calculatorObj.secondNum = [];
   calculatorDisplayInput.value = 0;
 });
 
 // OPERATION: Calculate
-btnEqual.addEventListener("click", () => runOperation(currentOperator));
+btnEqual.addEventListener("click", () =>
+  runOperation(calculatorObj.currentOperator)
+);
 
 // OPERATION: General Calculation
 let runOperation = (op) => {
-  let selectOperator = operators[op];
-  if (firstNum.length == 0) {
-    firstNum = currentValue;
-    currentValue = [];
-    execCalculation(selectOperator, [firstNum.join(""), secondNum.join("")]);
+  let selectOperator = calculatorObj.operators[op];
+  if (calculatorObj.firstNum.length == 0) {
+    calculatorObj.firstNum = calculatorObj.currentValue;
+    calculatorObj.currentValue = [];
+    execCalculation(selectOperator, [
+      calculatorObj.firstNum.join(""),
+      calculatorObj.secondNum.join(""),
+    ]);
   } else {
-    secondNum = currentValue;
+    calculatorObj.secondNum = calculatorObj.currentValue;
     // If secondNum is 0, running execution for division and multiplication will return zero, therefore following code prevents it.
-    if (selectOperator == operators[2] && secondNum == 0 || selectOperator == operators[3] && secondNum == 0) {
-      secondNum = 1;
+    if (
+      (selectOperator == calculatorObj.operators[2] &&
+        calculatorObj.secondNum == 0) ||
+      (selectOperator == calculatorObj.operators[3] &&
+        calculatorObj.secondNum == 0)
+    ) {
+      calculatorObj.secondNum = [1];
     }
-    execCalculation(selectOperator, [firstNum.join(""), secondNum.join("")]);
-    firstNum = calculatorDisplayInput.value.split("");
-    currentValue = [];
+    execCalculation(selectOperator, [
+      calculatorObj.firstNum.join(""),
+      calculatorObj.secondNum.join(""),
+    ]);
+    calculatorObj.firstNum = calculatorDisplayInput.value.split("");
+    calculatorObj.currentValue = [];
   }
 };
