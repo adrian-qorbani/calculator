@@ -3,7 +3,7 @@
 const add = (x, y) => x + y;
 const subtract = (x, y) => x - y;
 const multiply = (x, y) => x * y;
-const divide = (x, y) => a / b;
+const divide = (x, y) => x / y;
 
 ///// Defined vars for Operation /////
 
@@ -96,8 +96,11 @@ let runOperation = (op) => {
     execCalculation(selectOperator, [firstNum.join(""), secondNum.join("")]);
   } else {
     secondNum = currentValue;
+    // If secondNum is 0, running execution for division and multiplication will return zero, therefore following code prevents it.
+    if (selectOperator == operators[2] && secondNum == 0 || selectOperator == operators[3] && secondNum == 0) {
+      secondNum = 1;
+    }
     execCalculation(selectOperator, [firstNum.join(""), secondNum.join("")]);
-    // secondNum = [];
     firstNum = calculatorDisplayInput.value.split("");
     currentValue = [];
   }
