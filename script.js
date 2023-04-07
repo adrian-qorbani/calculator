@@ -1,3 +1,4 @@
+// This is an updated version my calculator written in more cleaner state.
 ///// Defined Calculating Functions /////
 
 const add = (x, y) => x + y;
@@ -5,24 +6,72 @@ const subtract = (x, y) => x - y;
 const multiply = (x, y) => x * y;
 const divide = (x, y) => x / y;
 
-///// Defined vars for Operation /////
+//// Defined Calculator Keys
 
-let firstNum = [];
+const calcBtns = document.querySelector("#calc-buttons");
+calcBtns.addEventListener("click", (event) => {
+  const { target } = event;
 
+  if (!target.matches("button")) {
+    return;
+  }
+  if (target.classList.contains("operator")) {
+    handleOperator(target.value);
+    updateCalcDisplay();
+  }
+  if (target.classList.contains("btn-decimal")) {
+    inputDecimal(target.value);
+    updateCalcDisplay();
+  }
+  if (target.classList.contains("allc")) {
+    console.log("allc", target.value);
+  }
+  inputDigit(target.value);
+  updateCalcDisplay();
+});
 
-///// DOM Variables /////
-// Operators
-const btnAdd = document.querySelector("#add-operator");
-const btnSubtract = document.querySelector("#subtract-operator");
-const btnDivide = document.querySelector("#division-operator");
-const btnMultiply = document.querySelector("#times-operator");
-const actionButtons = document.querySelectorAll(".action-btns");
-let calculatorDisplayInput = document.querySelector("#calculator-input");
+///// Calculator Object /////
 
-// Others
-const btnDecimal = document.querySelector("#btn-decimal");
-const btnAC = document.querySelector("#btn-ac");
-const btnEqual = document.querySelector("#btn-equal");
+const calcObj = {
+  firstOperand: null,
+  displayValue: "0",
+  awaitSecondOperand: 0, // either 0 or 1
+  operator: null,
+};
 
-///// Defined Calc Operation /////
+// Calculator Display Update
 
+inputDigit = (digit) => {
+  const displayValue = calcObj.displayValue;
+  calcObj.displayValue = displayValue === "0" ? digit : displayValue + digit;
+  console.log(calcObj);
+};
+
+inputDecimal = (decimal) => {
+  if (!calcObj.displayValue.includes(decimal)) {
+    calcObj.displayValue += decimal;
+  }
+};
+
+handleOperator = (nextOperator) => {
+  const { firstOperand, displayValue, operator } = calcObj;
+
+  const inputValue = parseFloat(displayValue);
+
+  if (firstOperand === null && !isNaN(inputValue)) {
+    // Update the firstOperand property
+    calcObj.firstOperand = inputValue;
+  }
+
+  calculator.waitingForSecondOperand = true;
+  calculator.operator = nextOperator;
+  console.log(calcObj);
+};
+
+updateCalcDisplay = () => {
+  let calcDisplay = document.querySelector("#calculator-input");
+  calcDisplay.value = calcObj.displayValue;
+  // console.log("Hello. Updating!")
+};
+
+updateCalcDisplay();
