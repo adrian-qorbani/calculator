@@ -5,6 +5,8 @@ const subtract = (x, y) => x - y;
 const multiply = (x, y) => x * y;
 const divide = (x, y) => x / y;
 
+
+
 ///// Defined a object calculation vars for Operation /////
 const calculatorObj = {
   firstNum: [],
